@@ -1,123 +1,135 @@
 # e2a Launch Video
 
-用 [HyperFrames](https://hyperframes.heygen.com) 做的 **e2a 产品发布短片**(~55s,1080p,含配音 + BGM)。
+A ~55s product launch film for **e2a**, built with [HyperFrames](https://hyperframes.heygen.com) and finished with voiceover and BGM.
 
-一个关于 **"给 AI agent 一个真实的 email 地址,就是给它一个身份"** 的故事:agent 是你的新队友,但它没有地址、够不到任何人;e2a 给它地址后,它就能替你把对外的活干了,而你始终掌控。
+The whole thing rides on one idea: **giving your AI agent a real email address is really giving it an identity.** Your agent is a new teammate, but it has no address and can't reach anyone. Once e2a gives it one, it can handle your outbound work, and you stay in control.
 
-**成片:** [`renders/e2a Launch.mp4`](renders/)
+**Final cut:** [`renders/e2a Launch.mp4`](renders/)
 
 ---
 
-## 故事骨架(identity story)
+## The Story
 
 ```
-Intro   遇见你的新 agent
-Hook    你有一堆对外的活(客户 / 订单 / 会议 / 供应商)想甩给它
-Pain    它能想、能起草,却够不到任何人 —— 它没有地址(团队花名册里唯一没邮箱的)
-Reveal  e2a 给它一个真实地址:agent@agents.e2a.dev,身份点亮
-Work    它替你把活干了 —— 四个业务分屏演真实邮件往来
-        Support·Stripe / Scheduling·Google Meet / Commerce·Amazon / Reception·Slack
-Trust   要群发 2,400 个客户?先 HELD,你点一下 Approve 才发出
-Close   "你的 agent 不需要又一个 dashboard,它需要一个地址" + 一行命令安装
-Brand   e2a · Give your agent an address.
+Intro    Meet your new agent.
+Hook     You've got outbound work to hand off (customers, orders, meetings, vendors).
+Pain     It can think and draft, but it can't reach anyone. It has no address
+         (the only teammate on the roster without an email).
+Reveal   e2a gives it a real address: agent@agents.e2a.dev. Identity, granted.
+Work     It gets the work done, one business line at a time, each a real email thread:
+         Support / Stripe, Scheduling / Google Meet, Commerce / Amazon, Reception / Slack.
+Trust    Sending to 2,400 customers? It's HELD until you tap Approve.
+Close    "Your agent doesn't need another dashboard. It needs an address." + one-line install.
+Brand    e2a. Give your agent an address.
 ```
 
-核心隐喻:**Email address = identity**(而不是 email = 一个通信功能)。
+The core metaphor is **email address = identity**, not email = a communication feature.
 
 ---
 
-## AI 视频工具选型:Remotion vs HyperFrames
+# Video Production Workflow
 
-两者不是替代关系,而是**分工互补**。
+## Video Editing Basics for Developers
 
-### Remotion —— 强,但改局部动效偏重
-- 能做出很多**电影感镜头**,表现力强。
-- 但做**局部动效微调**时"改起来有点重":动一个小效果往往要改 React 组件、跑整体编译,牵一发动全身。
-- → 更适合 **总控 / 编排**。
+For developers working with video for the first time, it helps to think of a video as a sequence of coordinated visual, textual, and audio layers:
 
-### HyperFrames —— 改动效很直接,但不适合总控
-- 一个 frame 就是一段 HTML + GSAP,**改动效所见即所得、seek-safe**,非常直接。
-- 但**不适合做整片的总控 / 编排**。
-- → 更适合 **把某一段画面 / 动效做得更高级**。
+- **A-roll** is the primary footage: the main presenter, interview, screen recording, or central narrative.
+- **B-roll** is supporting footage inserted over or between A-roll to illustrate a point, establish context, add visual variety, or hide an edit.
+- **Script** defines the message, narrative structure, and pacing. It is the source of truth for what the video needs to communicate.
+- **Shots** are the individual visual units of a video. A shot can be product footage, a screen recording, a close-up, an interface state, or an animated graphic.
+- **Captions** turn spoken words into on-screen text. They improve clarity, accessibility, and retention, especially when a video is watched without sound.
+- **Audio** includes voiceover, dialogue, background music (BGM), and sound effects. It controls rhythm and emotional tone as much as the visuals do.
+- **Motion design** gives information movement and emphasis. Common examples include titles flying in, cards expanding, data appearing, code being highlighted, infographics changing states, and animated transitions between scenes.
 
----
+This workflow treats creative direction as the foundation of every video. B-roll, motion design, transitions, and music should all support a clear idea rather than compensate for a weak one.
 
-## 推荐分工:Remotion 总控 + HyperFrames 打磨
+## 1. Define the Storyboard
 
-如果目标是产出**一套长期可复用的视频生产系统**(选题 → 脚本 → 镜头 → 字幕 → 画面 → 导出):
+Creative direction is the most important part of the process. I work iteratively with GPT to develop and refine the concept until the narrative, pacing, and visual direction are clear. At this stage, we define the storyboard and shot list, including the purpose of each scene and its required B-roll.
 
-| 层 | 谁负责 | 干什么 |
-|---|---|---|
-| **总控 / 编排** | **Remotion** | 整条视频"怎么走":A-Roll / B-Roll、字幕、音频、镜头、时间轴、总控 |
-| **单段打磨** | **HyperFrames** | 这一段"怎么更好看":单个镜头 / 动效 / B-roll 的高级感 |
+## 2. Produce the Assets
 
-- HyperFrames 配合 **`auto-motion` skill**:把动效分镜头拆成**独立的 project**,方便单独调整——改这一段动效不影响整片。
-- 一句话:**Remotion 定"骨架和节奏",HyperFrames 把每块骨头打磨到高级。**
+### 2.1 Establish the Mode
 
----
+First, I define a visual **Mode** based on the video's purpose, audience, and desired aesthetic. This establishes the visual language for the project: mood, typography, color, composition, motion, and overall style.
 
-## 我是怎么做这支片的
+For reference-driven work, I can use HyperFrames' web-to-video skills to help an agent analyze a source video or website and extract its visual style and artistic direction.
 
-做多了以后我越来越觉得,视频这件事**创意才是重头戏**,工具都是其次。所以我整个流程基本是围绕"先把想说的东西想透"来的。
+### 2.2 Capture Product References
 
-**第一步,死磕 storyboard,这一步我花的时间最多。**
-一个镜头接一个镜头到底讲什么、怎么演、为什么这么排——我会一版一版地和 GPT 来回聊,推翻重来,直到分镜头真的立得住才往下走。这步没想清楚,后面画面做得再漂亮也白搭。
+I ask an agent to capture screenshots from the product's official website. These references help the video stay faithful to the product's identity, including its fonts, logo usage, theme, and tone of voice.
 
-**第二步,才是动手做素材(assets)。**
-storyboard 定了我才开始做画面,大概是这么几件事:
+### 2.3 Iterate on Clips
 
-1. **先给这支片定一个 Mode,也就是它的审美和风格。**
-   我会先想清楚自己想要什么调性,再按视频类型定个 Mode。这步能偷懒——把 HyperFrames 的 `web-to-video` skill 喂给 agent,让它帮我从参考里把风格和艺术审美提炼出来,省得自己从零去描述。
+Each clip is refined through repeated review and revision. This can include adjusting the design, adding or improving motion, and redesigning transitions so the sequence feels intentional and cohesive.
 
-2. **让 agent 去 capture 目标产品的官网。**
-   直接抓官网截图,把它的字体、logo、主题色、文案语气(fonts / logo / theme / voice)都扒下来。这样做出来的东西才**贴产品的调性**,而不是一层放之四海皆准的模板皮。
+### 2.4 Render
 
-3. **然后就对着每个 clip 一遍遍磨。**
-   加动效、调转场,哪儿不够高级就再来一版。这也是 HyperFrames 最舒服的地方:改起来直接,所见即所得。
+Once the clips and transitions are approved, I render the video.
 
-4. **磨满意了就 render 出片。**
+### 2.5 Final Edit in CapCut
 
-5. **最后进剪映,加 BGM、做点微剪辑收个尾。**
-   配音已经烘在视频里了,这步基本就是铺个背景乐、压一下音量、掐一掐节奏。
+Finally, I bring the rendered video into CapCut to add background music and make fine editorial adjustments, such as timing, rhythm, and small cuts.
 
 ---
 
-## 这支片的制作流水线(HyperFrames)
+## Tooling: Remotion vs HyperFrames
+
+These two aren't competitors, they're a division of labor.
+
+**Remotion is powerful, but heavy to tweak locally.** It can produce genuinely cinematic shots, but when you just want to adjust one small piece of motion, the change is heavy: you often end up touching React components and recompiling the whole thing. That makes it a great fit for **orchestration and master control.**
+
+**HyperFrames is direct to tweak, but not built for master control.** A frame is just a bit of HTML plus GSAP, so editing motion is immediate and seek-safe, exactly what you want when you're polishing. But it's not the tool for sequencing an entire film. That makes it a great fit for **making a single shot look better.**
+
+### A workflow that uses both
+
+If the goal is a reusable, long-term video production system (topic → script → shots → captions → visuals → export):
+
+| Layer | Tool | Job |
+| --- | --- | --- |
+| **Orchestration** | **Remotion** | How the whole video flows: A-roll / B-roll, captions, audio, shots, timeline, master control. |
+| **Per-shot polish** | **HyperFrames** | How one segment looks: a single shot, its motion, and B-roll, made premium. |
+
+HyperFrames pairs well with the **`auto-motion` skill**, which splits motion shots into standalone projects so you can tune one segment without disturbing the rest. In short: **Remotion sets the skeleton and rhythm; HyperFrames polishes every bone.**
+
+---
+
+## How this cut was built (HyperFrames)
 
 ```
-STORYBOARD.md  分镜(每帧一拍,含 transition / duration)
-SCRIPT.md      锁定旁白
-    ↓
-compositions/frames/*.html   逐帧手写 HTML + GSAP(seek-safe 单时间轴)
-    ↓
-audio.mjs      Kokoro 本地 TTS 生成配音 + 时长对齐
-assemble-index.mjs   组装成 index.html(帧 + 语音轨)
-transitions.mjs      注入电影级 seam(zoom-through / blur-crossfade / push-slide)
-    ↓
-hyperframes render   → renders/*.mp4
-    ↓
-剪映 / CapCut        加 BGM、导出成片
+STORYBOARD.md          the shot plan (one beat per frame, with transition + duration)
+SCRIPT.md              the locked voiceover
+    |
+compositions/frames/   hand-written HTML + GSAP per frame (single seek-safe timeline)
+    |
+audio.mjs              local Kokoro TTS for voiceover + duration sync
+assemble-index.mjs     assembles index.html (frames + voice track)
+transitions.mjs        injects cinematic seams (zoom-through / blur-crossfade / push-slide)
+    |
+hyperframes render     -> renders/*.mp4
+    |
+CapCut                 add BGM, final edit, export
 ```
 
 ---
 
-## 设计要点
+## Design notes
 
-- **Committed 配色**(遵循设计法则,拒绝撞色卡 / clown palette):奶油纸 `#faf7f2` + 深墨绿 `#2b4033` + 和谐分类色(绿 / 蓝 / 金 / 紫)+ 电光青柠 `#d3fb52` 作能量点缀。
-- **字体**:Fraunces(展示)+ Inter(正文)+ JetBrains Mono(地址 / 终端)。
-- **视觉母题**:`agent@agents.e2a.dev` 这个地址贯穿全片——从空 `????` → 打字点亮 → 每个动作的签名。
-- 逐业务**全屏真实场景**(不挤在一个看板)+ 超大 macOS 光标点击 Approve。
+- **Committed palette** (no clashing-color card grids): warm paper `#faf7f2`, deep canopy green `#2b4033`, a small set of harmonized category accents (green / blue / gold / plum), and electric lime `#d3fb52` as scarce voltage.
+- **Type:** Fraunces (display), Inter (body), JetBrains Mono (addresses / terminal).
+- **Recurring motif:** the address `agent@agents.e2a.dev` runs through the whole film, from an empty `????`, to typed-on and live, to a signature on every action.
+- Use cases are shown **one business at a time, full screen** (not crammed into a single dashboard), with an oversized macOS cursor for the Approve tap.
 
 ---
 
-## 目录结构
+## Repo layout
 
 ```
-renders/e2a Launch.mp4     最终成片
-STORYBOARD.md / SCRIPT.md  分镜 + 旁白
-frame.md                   设计系统(配色 / 字体 / 组件规范)
-compositions/frames/       8 个逐帧 HTML(00-intro … 07-brand)
-assets/fonts/              品牌字体(woff2)
-capture/                   e2a.dev 抓取的品牌 token / 截图
-index.html                 组装后的主合成
+renders/e2a Launch.mp4     the final film
+STORYBOARD.md / SCRIPT.md  shot plan + voiceover
+frame.md                   the design system (palette / type / components)
+compositions/frames/       the per-frame HTML (00-intro ... 07-brand)
+assets/fonts/              brand fonts (woff2)
+capture/                   brand tokens + screenshots captured from e2a.dev
+index.html                 the assembled master composition
 ```
