@@ -1,4 +1,4 @@
-# e2a Launch Video
+# Launch Video
 
 A ~55s product launch film for **e2a**, built with [HyperFrames](https://hyperframes.heygen.com) and finished with voiceover and BGM.
 
