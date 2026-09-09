@@ -1,0 +1,107 @@
+{
+  "files": [
+    {
+      "file": "fraunces_latin_full_italic-s.p.1xvpc9u9w_0bi.woff2",
+      "family": "Fraunces",
+      "rawFamily": "Fraunces",
+      "subfamily": "Italic",
+      "postscript": "Fraunces-9ptBlackItalic",
+      "weight": 900,
+      "style": "italic",
+      "variationAxes": [
+        "opsz",
+        "wght",
+        "SOFT",
+        "WONK"
+      ],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "fraunces_latin_full_normal-s.p.40m4cggjzbqwa.woff2",
+      "family": "Fraunces",
+      "rawFamily": "Fraunces",
+      "subfamily": "Regular",
+      "postscript": "Fraunces-9ptBlack",
+      "weight": 900,
+      "style": "normal",
+      "variationAxes": [
+        "opsz",
+        "wght",
+        "SOFT",
+        "WONK"
+      ],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "inter_latin_wght_normal-s.p.0gsaq8ukbf34m.woff2",
+      "family": "Inter",
+      "rawFamily": "Inter",
+      "subfamily": "Regular",
+      "postscript": "Inter-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [
+        "wght"
+      ],
+      "identified": true,
+      "isIcon": false
+    },
+    {
+      "file": "jetbrains_mono_latin_wght_normal-s.p.2rmhnsrc80fag.woff2",
+      "family": "JetBrains Mono",
+      "rawFamily": "JetBrains Mono",
+      "subfamily": "Regular",
+      "postscript": "JetBrainsMono-Regular",
+      "weight": 400,
+      "style": "normal",
+      "variationAxes": [
+        "wght"
+      ],
+      "identified": true,
+      "isIcon": false
+    }
+  ],
+  "families": [
+    {
+      "family": "Fraunces",
+      "weights": [
+        900
+      ],
+      "variable": true,
+      "fileCount": 2,
+      "files": [
+        "fraunces_latin_full_italic-s.p.1xvpc9u9w_0bi.woff2",
+        "fraunces_latin_full_normal-s.p.40m4cggjzbqwa.woff2"
+      ]
+    },
+    {
+      "family": "Inter",
+      "weights": [
+        400
+      ],
+      "variable": true,
+      "fileCount": 1,
+      "files": [
+        "inter_latin_wght_normal-s.p.0gsaq8ukbf34m.woff2"
+      ]
+    },
+    {
+      "family": "JetBrains Mono",
+      "weights": [
+        400
+      ],
+      "variable": true,
+      "fileCount": 1,
+      "files": [
+        "jetbrains_mono_latin_wght_normal-s.p.2rmhnsrc80fag.woff2"
+      ]
+    }
+  ],
+  "unidentified": [],
+  "meta": {
+    "generatedAt": "2026-09-08T18:25:42.481Z",
+    "tool": "fontkit"
+  }
+}

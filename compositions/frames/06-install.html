@@ -1,0 +1,190 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Fraunces";
+      src: url("assets/fonts/fraunces_latin_full_normal-s.p.40m4cggjzbqwa.woff2") format("woff2");
+      font-weight: 100 900; font-style: normal; font-display: block;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/inter_latin_wght_normal-s.p.0gsaq8ukbf34m.woff2") format("woff2");
+      font-weight: 100 900; font-style: normal; font-display: block;
+    }
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("assets/fonts/jetbrains_mono_latin_wght_normal-s.p.2rmhnsrc80fag.woff2") format("woff2");
+      font-weight: 100 900; font-style: normal; font-display: block;
+    }
+
+    #root {
+      container-type: size;
+      position: relative;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #1a1714;
+    }
+
+    #root .in6-ground {
+      position: absolute; inset: 0;
+      background: #faf7f2;
+    }
+
+    /* kicker */
+    #root .in6-kicker {
+      position: absolute; left: 50%; top: 15.5cqh;
+      transform: translateX(-50%);
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.35cqw; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #2b4033; white-space: nowrap;
+    }
+    #root .in6-spike { color: #2b4033; }
+
+    /* terminal */
+    #root .in6-term {
+      position: absolute; left: 50%; top: 26cqh;
+      margin-left: -27cqw; width: 54cqw;
+      background: #1e2e24;
+      border: 1px solid rgba(242,236,226,0.14);
+      border-radius: 10px;
+      box-shadow: 0 1px 3px rgba(26,23,20,0.08), 0 12px 34px rgba(26,23,20,0.10);
+      overflow: hidden;
+    }
+    #root .in6-titlebar {
+      display: flex; align-items: center; gap: 0.7cqw;
+      height: 3.4cqh; padding: 0 1.4cqw;
+      background: #223529;
+      border-bottom: 1px solid rgba(242,236,226,0.10);
+    }
+    #root .in6-dot { width: 0.7cqw; height: 0.7cqw; border-radius: 9999px; background: rgba(242,236,226,0.30); }
+    #root .in6-titlelabel {
+      margin-left: 0.6cqw;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.05cqw; letter-spacing: 0.02em; color: rgba(242,236,226,0.62);
+    }
+    #root .in6-body { padding: 2.0cqw 2.0cqw 2.2cqw; }
+    #root .in6-cmdline {
+      display: flex; align-items: baseline;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.8cqw; line-height: 1.5;
+    }
+    #root .in6-prompt { color: #8fae7f; margin-right: 0.7cqw; }
+    #root .in6-cmd {
+      display: inline-block; overflow: hidden; white-space: nowrap;
+      color: #f2ece2; border-right: 2px solid rgba(242,236,226,0.85);
+      width: 0;
+    }
+    #root .in6-success {
+      display: flex; align-items: center; gap: 0.7cqw;
+      margin-top: 1.4cqw;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.5cqw; color: #a9c79a;
+    }
+    #root .in6-check { color: #a9c79a; }
+
+    /* proof chips */
+    #root .in6-chips {
+      position: absolute; left: 50%; top: 63cqh;
+      transform: translateX(-50%);
+      display: flex; gap: 1.1cqw; white-space: nowrap;
+    }
+    #root .in6-chip {
+      display: inline-flex; align-items: center;
+      padding: 0.9cqw 1.5cqw; border-radius: 9999px;
+      background: #f2ece2; border: 1px solid #e5ded3;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.35cqw; letter-spacing: 0.02em; color: #6e665b;
+    }
+
+    /* oversized macOS cursor */
+    #root .in6-cursor-wrap {
+      position: absolute; left: 25cqw; top: 28%;
+      width: 7cqw; opacity: 0; pointer-events: none; z-index: 50;
+    }
+    #root .in6-cursor {
+      display: block; width: 100%; height: auto;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+      transform-origin: 21% 14%;
+    }
+  </style>
+
+  <div id="root" data-composition-id="06-install" data-start="0" data-duration="7.8" data-width="1920" data-height="1080">
+    <div class="in6-ground clip" data-start="0" data-duration="7.8" data-track-index="0"></div>
+
+    <div class="in6-kicker clip" id="in6-kicker" data-start="0" data-duration="7.8" data-track-index="1">
+      <span class="in6-spike">&#10033;</span>&nbsp;&nbsp;One command
+    </div>
+
+    <div class="in6-term clip" id="in6-term" data-start="0" data-duration="7.8" data-track-index="2">
+      <div class="in6-titlebar">
+        <span class="in6-dot"></span><span class="in6-dot"></span><span class="in6-dot"></span>
+        <span class="in6-titlelabel">~/my-agent</span>
+      </div>
+      <div class="in6-body">
+        <div class="in6-cmdline">
+          <span class="in6-prompt">$</span>
+          <span class="in6-cmd" id="in6-cmd">claude plugin install e2a@e2a</span>
+        </div>
+        <div class="in6-success" id="in6-success">
+          <span class="in6-check">&#10003;</span><span>Your agent has an inbox</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="in6-chips clip" id="in6-chips" data-start="0" data-duration="7.8" data-track-index="3">
+      <span class="in6-chip">OAuth</span>
+      <span class="in6-chip">no API key</span>
+      <span class="in6-chip">Apache 2.0</span>
+      <span class="in6-chip">open source</span>
+    </div>
+
+    <div class="in6-cursor-wrap clip" id="in6-cursor-wrap" data-start="0" data-duration="7.8" data-track-index="5">
+      <svg class="in6-cursor" id="in6-cursor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M5 2.5 L5 20.5 L9.6 16.4 L12.4 22.6 L15.1 21.3 L12.3 15.2 L18.6 15.2 Z" fill="#ffffff" stroke="#1c1c1c" stroke-width="1.3" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    // Scene 1 — kicker pops
+    tl.fromTo("#in6-kicker",
+      { opacity: 0, y: -14 },
+      { opacity: 1, y: 0, duration: 0.45, ease: "back.out(2)" }, 0.1);
+
+    // Scene 2 — terminal springs in; the cursor glides in and taps to RUN it
+    tl.fromTo("#in6-term",
+      { opacity: 0, y: 26, scale: 0.94 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.5)" }, 0.8);
+    tl.fromTo("#in6-cursor-wrap", { y: 1000, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 0.6);
+    tl.to("#in6-cursor", { scale: 0.84, duration: 0.1, ease: "power2.in" }, 1.32);
+    tl.to("#in6-cursor", { scale: 1, duration: 0.22, ease: "power2.out" }, 1.42);
+    // the click IGNITES the command typing
+    tl.fromTo("#in6-cmd",
+      { width: 0 },
+      { width: "29ch", duration: 1.5, ease: "steps(29)" }, 1.5);
+    // cursor drifts off while the command types
+    tl.to("#in6-cursor-wrap", { y: 1000, opacity: 0, duration: 0.6, ease: "power2.in" }, 1.95);
+
+    // Scene 3 — success line resolves
+    tl.fromTo("#in6-success",
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 3.1);
+
+    // Scene 4 — proof chips pop in staggered
+    tl.fromTo("#in6-chips .in6-chip",
+      { opacity: 0, y: 22, scale: 0.8 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(2.2)", stagger: 0.14 }, 4.2);
+
+    // Scene 5 — confident settle (no exit)
+    tl.fromTo("#in6-term",
+      { scale: 1 },
+      { scale: 1.012, duration: 0.7, ease: "power1.inOut" }, 6.2);
+
+    window.__timelines["06-install"] = tl;
+  </script>
+</template>

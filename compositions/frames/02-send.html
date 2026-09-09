@@ -1,0 +1,103 @@
+<template>
+  <style>
+    @font-face { font-family:"Fraunces"; src:url("assets/fonts/fraunces_latin_full_normal-s.p.40m4cggjzbqwa.woff2") format("woff2"); font-weight:100 900; font-style:normal; font-display:block; }
+    @font-face { font-family:"Inter"; src:url("assets/fonts/inter_latin_wght_normal-s.p.0gsaq8ukbf34m.woff2") format("woff2"); font-weight:100 900; font-style:normal; font-display:block; }
+    @font-face { font-family:"JetBrains Mono"; src:url("assets/fonts/jetbrains_mono_latin_wght_normal-s.p.2rmhnsrc80fag.woff2") format("woff2"); font-weight:100 900; font-style:normal; font-display:block; }
+
+    #root { position:relative; width:1920px; height:1080px; container-type:size; overflow:hidden; background:#faf7f2; }
+    #root .sd2-ground { position:absolute; inset:0; background:#faf7f2; }
+    #root .sd2-kicker { position:absolute; left:9cqw; top:13cqh; font-family:"JetBrains Mono",monospace; font-weight:500; font-size:1.35cqw; letter-spacing:0.16em; text-transform:uppercase; color:#2b4033; opacity:0; }
+
+    /* left: code / terminal card */
+    #root .sd2-code {
+      position:absolute; left:9cqw; top:24cqh; width:38cqw; height:44cqh;
+      background:#1e2e24; border:1px solid rgba(242,236,226,0.14); border-radius:12px;
+      box-shadow:0 1px 3px rgba(26,23,20,0.14), 0 16px 40px rgba(26,23,20,0.10);
+      opacity:0; will-change:transform,opacity; overflow:hidden;
+    }
+    #root .sd2-bar { height:5.2cqh; background:#223529; display:flex; align-items:center; padding:0 1.6cqw; gap:0.7cqw; }
+    #root .sd2-dot { width:0.9cqw; height:0.9cqw; border-radius:9999px; background:rgba(242,236,226,0.35); }
+    #root .sd2-file { margin-left:1cqw; font-family:"JetBrains Mono",monospace; font-size:1.1cqw; color:rgba(242,236,226,0.7); }
+    #root .sd2-codebody { padding:2cqw 1.8cqw; font-family:"JetBrains Mono",monospace; font-size:1.5cqw; line-height:1.8; color:#f2ece2; }
+    #root .sd2-line { opacity:0; white-space:pre; will-change:transform,opacity; }
+    #root .sd2-kw { color:#b6f36e; } #root .sd2-str { color:#6fb39a; } #root .sd2-mut { color:rgba(242,236,226,0.55); }
+
+    /* right: delivered email */
+    #root .sd2-email {
+      position:absolute; right:9cqw; top:28cqh; width:34cqw;
+      background:#faf7f2; border:1px solid #e5ded3; border-radius:12px;
+      box-shadow:0 1px 3px rgba(26,23,20,0.08), 0 14px 34px rgba(26,23,20,0.07);
+      padding:2cqw; opacity:0; will-change:transform,opacity;
+    }
+    #root .sd2-from { font-family:"JetBrains Mono",monospace; font-size:1.2cqw; color:#6e665b; margin-bottom:0.8cqw; }
+    #root .sd2-subj { font-family:"Inter",sans-serif; font-weight:500; font-size:2cqw; color:#1a1714; margin-bottom:0.7cqw; }
+    #root .sd2-prev { font-family:"Inter",sans-serif; font-weight:400; font-size:1.5cqw; color:#6e665b; line-height:1.45; }
+    #root .sd2-meta { display:flex; align-items:center; gap:1cqw; margin-top:1.6cqw; }
+    #root .sd2-deliv {
+      font-family:"JetBrains Mono",monospace; font-weight:500; font-size:1.1cqw; letter-spacing:0.14em; text-transform:uppercase; color:#4f6146;
+      background:rgba(92,111,81,0.14); border:1px solid rgba(92,111,81,0.4); border-radius:9999px; padding:0.5cqw 1.2cqw; opacity:0; will-change:transform,opacity;
+    }
+    #root .sd2-count {
+      font-family:"JetBrains Mono",monospace; font-weight:500; font-size:1.1cqw; color:#233a24;
+      background:#dfe6cf; border-radius:9999px; padding:0.5cqw 1.1cqw; opacity:0; will-change:transform,opacity;
+    }
+
+    /* oversized macOS cursor */
+    #root .sd2-cursor-wrap { position:absolute; left:12cqw; top:50%; width:7cqw; opacity:0; pointer-events:none; z-index:50; }
+    #root .sd2-cursor { display:block; width:100%; height:auto; filter:drop-shadow(0 4px 6px rgba(0,0,0,0.3)); transform-origin:21% 14%; }
+  </style>
+
+  <div id="root" data-composition-id="02-send" data-start="0" data-duration="7.75" data-width="1920" data-height="1080">
+    <div class="clip sd2-ground" data-start="0" data-duration="8.5" data-track-index="0"></div>
+    <div class="clip sd2-kicker" data-start="0" data-duration="8.5" data-track-index="1" id="sd2-kicker">&#10033;&nbsp;&nbsp;Send from your app</div>
+
+    <div class="clip sd2-code" data-start="0" data-duration="8.5" data-track-index="2" id="sd2-code">
+      <div class="sd2-bar"><span class="sd2-dot"></span><span class="sd2-dot"></span><span class="sd2-dot"></span><span class="sd2-file">send.ts</span></div>
+      <div class="sd2-codebody">
+        <div class="sd2-line" id="sd2-l1"><span class="sd2-kw">await</span> e2a.<span class="sd2-kw">send</span>({</div>
+        <div class="sd2-line" id="sd2-l2">  to: <span class="sd2-str">"you@acme.com"</span>,</div>
+        <div class="sd2-line" id="sd2-l3">  subject: <span class="sd2-str">"Your receipt"</span>,</div>
+        <div class="sd2-line" id="sd2-l4">  <span class="sd2-mut">// receipts · alerts · verify</span></div>
+        <div class="sd2-line" id="sd2-l5">})</div>
+      </div>
+    </div>
+
+    <div class="clip sd2-email" data-start="0" data-duration="8.5" data-track-index="3" id="sd2-email">
+      <div class="sd2-from">from&nbsp;&nbsp;receipts@agents.e2a.dev</div>
+      <div class="sd2-subj">Your receipt</div>
+      <div class="sd2-prev">Thanks for your order — here's your confirmation and details.</div>
+      <div class="sd2-meta">
+        <span class="sd2-deliv" id="sd2-deliv">delivered</span>
+        <span class="sd2-count" id="sd2-count">+1 sent</span>
+      </div>
+    </div>
+
+    <div class="clip sd2-cursor-wrap" id="sd2-cursor-wrap" data-start="0" data-duration="8.5" data-track-index="5">
+      <svg class="sd2-cursor" id="sd2-cursor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M5 2.5 L5 20.5 L9.6 16.4 L12.4 22.6 L15.1 21.3 L12.3 15.2 L18.6 15.2 Z" fill="#ffffff" stroke="#1c1c1c" stroke-width="1.3" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function(){
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused:true });
+      tl.fromTo("#sd2-kicker", { opacity:0, y:10 }, { opacity:1, y:0, duration:0.4, ease:"power2.out" }, 0.1);
+      tl.fromTo("#sd2-code", { opacity:0, y:24, scale:0.97 }, { opacity:1, y:0, scale:1, duration:0.55, ease:"back.out(1.6)" }, 0.3);
+      tl.fromTo(".sd2-line", { opacity:0, x:-14 }, { opacity:1, x:0, duration:0.32, ease:"power2.out", stagger:0.34 }, 0.9);
+      // the oversized cursor glides in and taps "run" — the click IGNITES the email
+      tl.fromTo("#sd2-cursor-wrap", { y:780, opacity:0 }, { y:0, opacity:1, duration:0.75, ease:"power3.out" }, 2.15);
+      tl.to("#sd2-cursor", { scale:0.84, duration:0.1, ease:"power2.in" }, 3.02);
+      tl.to("#sd2-cursor", { scale:1, duration:0.22, ease:"power2.out" }, 3.12);
+      tl.to("#sd2-code", { scale:0.99, duration:0.09, ease:"power2.out" }, 3.06);
+      tl.to("#sd2-code", { scale:1, duration:0.18, ease:"power2.out" }, 3.15);
+      tl.to("#sd2-cursor-wrap", { y:820, opacity:0, duration:0.55, ease:"power2.in" }, 3.55);
+      tl.fromTo("#sd2-email", { opacity:0, y:26, scale:0.96 }, { opacity:1, y:0, scale:1, duration:0.55, ease:"back.out(1.9)" }, 3.4);
+      tl.fromTo("#sd2-deliv", { opacity:0, scale:0.6 }, { opacity:1, scale:1, duration:0.4, ease:"back.out(3)" }, 4.4);
+      tl.fromTo("#sd2-count", { opacity:0, scale:0.6 }, { opacity:1, scale:1, duration:0.4, ease:"back.out(3)" }, 4.8);
+      window.__timelines["02-send"] = tl;
+    })();
+  </script>
+</template>

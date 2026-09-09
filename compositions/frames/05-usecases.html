@@ -1,0 +1,136 @@
+<template>
+  <style>
+    @font-face { font-family:"Fraunces"; src:url("assets/fonts/fraunces_latin_full_normal-s.p.40m4cggjzbqwa.woff2") format("woff2"); font-weight:100 900; font-style:normal; font-display:block; }
+    @font-face { font-family:"Inter"; src:url("assets/fonts/inter_latin_wght_normal-s.p.0gsaq8ukbf34m.woff2") format("woff2"); font-weight:100 900; font-style:normal; font-display:block; }
+    @font-face { font-family:"JetBrains Mono"; src:url("assets/fonts/jetbrains_mono_latin_wght_normal-s.p.2rmhnsrc80fag.woff2") format("woff2"); font-weight:100 900; font-style:normal; font-display:block; }
+
+    #root { container-type:size; position:relative; width:1920px; height:1080px; overflow:hidden; font-family:"Inter",sans-serif; color:#1a1714; }
+    #root .u-ground { position:absolute; inset:0; background:#faf7f2; }
+
+    /* each business scene fills the frame; only one visible at a time */
+    #root .u-scene { position:absolute; inset:0; opacity:0; }
+
+    /* left identity column */
+    #root .u-left { position:absolute; left:8cqw; top:30cqh; width:30cqw; }
+    #root .u-kick { font-family:"JetBrains Mono",monospace; font-weight:500; font-size:1.2cqw; letter-spacing:0.18em; text-transform:uppercase; display:flex; align-items:center; gap:0.7cqw; }
+    #root .u-kdot { width:0.9cqw; height:0.9cqw; border-radius:3px; }
+    #root .u-name { font-family:"Fraunces",Georgia,serif; font-weight:400; font-size:4.4cqw; line-height:1.0; letter-spacing:-0.02em; margin-top:1.6cqh; }
+    #root .u-ctx { font-size:1.7cqw; line-height:1.5; color:#5f6a5a; margin-top:1.8cqh; max-width:26cqw; }
+    #root .u-plat { font-family:"JetBrains Mono",monospace; font-size:1.05cqw; color:#8a857a; margin-top:2.0cqh; text-transform:uppercase; letter-spacing:0.1em; }
+
+    /* right email thread card */
+    #root .u-card { position:absolute; left:45cqw; top:23cqh; width:47cqw; background:#fffdf9; border:1px solid #e6e0d3; border-radius:16px; box-shadow:0 2px 4px rgba(26,23,20,0.04), 0 24px 60px rgba(26,23,20,0.10); overflow:hidden; }
+    #root .u-chead { display:flex; align-items:center; gap:0.8cqw; padding:1.5cqh 1.6cqw; border-bottom:1px solid #efe9dd; }
+    #root .u-cdot { width:1.7cqw; height:1.7cqw; border-radius:999px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:600; font-size:0.9cqw; }
+    #root .u-cinbox { font-family:"JetBrains Mono",monospace; font-size:1.15cqw; color:#5f5a50; }
+    #root .u-cstat { margin-left:auto; font-family:"JetBrains Mono",monospace; font-size:1.0cqw; text-transform:uppercase; letter-spacing:0.06em; }
+    #root .u-inb { padding:2.0cqh 1.9cqw 1.6cqh; }
+    #root .u-from { font-family:"JetBrains Mono",monospace; font-size:1.1cqw; color:#8a857a; }
+    #root .u-subj { font-weight:600; font-size:1.85cqw; margin-top:0.5cqh; line-height:1.2; }
+    #root .u-body { font-size:1.42cqw; color:#4a463d; line-height:1.5; margin-top:0.8cqh; }
+    #root .u-reply { margin:0 1.9cqw 1.8cqh 4.2cqw; padding:1.6cqh 1.5cqw; background:#f4f6f1; border:1px solid #e2e8dc; border-radius:12px; }
+    #root .u-rtag { font-family:"JetBrains Mono",monospace; font-size:1.0cqw; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.6cqh; }
+    #root .u-rbody { font-size:1.42cqw; color:#233225; line-height:1.5; }
+    #root .u-res { display:flex; align-items:center; gap:0.7cqw; padding:1.3cqh 1.9cqw; border-top:1px solid #efe9dd; font-family:"JetBrains Mono",monospace; font-size:1.15cqw; font-weight:500; text-transform:uppercase; letter-spacing:0.06em; }
+    #root .u-rdot { width:0.8cqw; height:0.8cqw; border-radius:999px; }
+
+    #root .c-g{color:#2e8659;} #root .bg-g{background:#2e8659;} #root .tg-g{color:#2e8659;background:#eaf3ec;}
+    #root .c-b{color:#4a76c9;} #root .bg-b{background:#4a76c9;} #root .tg-b{color:#4a76c9;background:#e9eff9;}
+    #root .c-o{color:#a5732f;} #root .bg-o{background:#c08a3e;} #root .tg-o{color:#a5732f;background:#f6efe2;}
+    #root .c-p{color:#9a5ea8;} #root .bg-p{background:#9a5ea8;} #root .tg-p{color:#9a5ea8;background:#f2ebf4;}
+  </style>
+
+  <div id="root" data-composition-id="05-usecases" data-start="0" data-duration="16.4" data-width="1920" data-height="1080">
+    <div class="clip u-ground" data-start="0" data-duration="16.4" data-track-index="0"></div>
+
+    <!-- Scene 1 · Support -->
+    <div class="clip u-scene" id="u-s1" data-start="0" data-duration="16.4" data-track-index="1">
+      <div class="u-left">
+        <div class="u-kick c-g"><span class="u-kdot bg-g"></span>Use case 01 / 04</div>
+        <div class="u-name">Support</div>
+        <div class="u-ctx">A double charge, caught and refunded in a single reply.</div>
+        <div class="u-plat">Stripe billing</div>
+      </div>
+      <div class="u-card" id="u-c1">
+        <div class="u-chead"><div class="u-cdot bg-g">S</div><div class="u-cinbox">support@agents.e2a.dev</div><div class="u-cstat c-g" id="u-h1">Working</div></div>
+        <div class="u-inb"><div class="u-from">from dana@acme.com</div><div class="u-subj">I was charged twice this month</div><div class="u-body">My subscription billed two times on the 3rd. Can you sort it out?</div></div>
+        <div class="u-reply" id="u-r1"><div class="u-rtag c-g">&#8627; e2a agent replied in thread</div><div class="u-rbody">Found the duplicate and refunded it. You'll see it back in 3 to 5 days.</div></div>
+        <div class="u-res c-g" id="u-x1"><span class="u-rdot bg-g"></span>Resolved in one reply</div>
+      </div>
+    </div>
+
+    <!-- Scene 2 · Scheduling -->
+    <div class="clip u-scene" id="u-s2" data-start="0" data-duration="16.4" data-track-index="2">
+      <div class="u-left">
+        <div class="u-kick c-b"><span class="u-kdot bg-b"></span>Use case 02 / 04</div>
+        <div class="u-name">Scheduling</div>
+        <div class="u-ctx">A meeting booked and a Google Meet invite sent, hands free.</div>
+        <div class="u-plat">Google Meet</div>
+      </div>
+      <div class="u-card" id="u-c2">
+        <div class="u-chead"><div class="u-cdot bg-b">S</div><div class="u-cinbox">scheduling@agents.e2a.dev</div><div class="u-cstat c-b" id="u-h2">Working</div></div>
+        <div class="u-inb"><div class="u-from">from priya@northwind.io</div><div class="u-subj">Can we sync this week?</div><div class="u-body">Would love 30 minutes to walk through the rollout. Any time Thursday?</div></div>
+        <div class="u-reply" id="u-r2"><div class="u-rtag c-b">&#8627; e2a agent replied in thread</div><div class="u-rbody">Thursday 3:00 PM works. Google Meet invite is on its way.</div></div>
+        <div class="u-res c-b" id="u-x2"><span class="u-rdot bg-b"></span>Confirmed, invite sent</div>
+      </div>
+    </div>
+
+    <!-- Scene 3 · Commerce -->
+    <div class="clip u-scene" id="u-s3" data-start="0" data-duration="16.4" data-track-index="3">
+      <div class="u-left">
+        <div class="u-kick c-o"><span class="u-kdot bg-o"></span>Use case 03 / 04</div>
+        <div class="u-name">Commerce</div>
+        <div class="u-ctx">An Amazon order chased down and answered with live tracking.</div>
+        <div class="u-plat">Amazon order</div>
+      </div>
+      <div class="u-card" id="u-c3">
+        <div class="u-chead"><div class="u-cdot bg-o">S</div><div class="u-cinbox">orders@agents.e2a.dev</div><div class="u-cstat c-o" id="u-h3">Working</div></div>
+        <div class="u-inb"><div class="u-from">from buyer@gmail.com</div><div class="u-subj">Where's my Amazon order #114-3941?</div><div class="u-body">Ordered last week, still no shipping update. Is it on the way?</div></div>
+        <div class="u-reply" id="u-r3"><div class="u-rtag c-o">&#8627; e2a agent replied in thread</div><div class="u-rbody">Shipped Tuesday, arriving Thursday. Live tracking is in this thread.</div></div>
+        <div class="u-res c-o" id="u-x3"><span class="u-rdot bg-o"></span>Shipped, tracking sent</div>
+      </div>
+    </div>
+
+    <!-- Scene 4 · Reception -->
+    <div class="clip u-scene" id="u-s4" data-start="0" data-duration="16.4" data-track-index="4">
+      <div class="u-left">
+        <div class="u-kick c-p"><span class="u-kdot bg-p"></span>Use case 04 / 04</div>
+        <div class="u-name">Reception</div>
+        <div class="u-ctx">A new lead welcomed and routed to the right team, instantly.</div>
+        <div class="u-plat">Slack lead</div>
+      </div>
+      <div class="u-card" id="u-c4">
+        <div class="u-chead"><div class="u-cdot bg-p">S</div><div class="u-cinbox">reception@agents.e2a.dev</div><div class="u-cstat c-p" id="u-h4">Working</div></div>
+        <div class="u-inb"><div class="u-from">from hello@inbound.co</div><div class="u-subj">Interested in a demo</div><div class="u-body">Saw the launch, we'd like e2a for our support team. Who do we talk to?</div></div>
+        <div class="u-reply" id="u-r4"><div class="u-rtag c-p">&#8627; e2a agent replied in thread</div><div class="u-rbody">Thanks for reaching out. Routed to Sales, they'll be in touch today.</div></div>
+        <div class="u-res c-p" id="u-x4"><span class="u-rdot bg-p"></span>Routed to Sales</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const u = gsap.timeline({ paused:true });
+    const scenes = [
+      { s:"#u-s1", c:"#u-c1", r:"#u-r1", x:"#u-x1", h:"#u-h1", start:0.5, last:false },
+      { s:"#u-s2", c:"#u-c2", r:"#u-r2", x:"#u-x2", h:"#u-h2", start:4.3, last:false },
+      { s:"#u-s3", c:"#u-c3", r:"#u-r3", x:"#u-x3", h:"#u-h3", start:8.1, last:false },
+      { s:"#u-s4", c:"#u-c4", r:"#u-r4", x:"#u-x4", h:"#u-h4", start:11.9, last:true }
+    ];
+    scenes.forEach(function(o){
+      const t = o.start;
+      u.fromTo(o.s, { opacity:0 }, { opacity:1, duration:0.5, ease:"power2.out" }, t);
+      u.fromTo(o.c, { opacity:0, x:34, scale:0.98 }, { opacity:1, x:0, scale:1, duration:0.55, ease:"power4.out" }, t+0.1);
+      // agent replies a beat after reading (the working -> replied moment)
+      u.fromTo(o.r, { opacity:0, y:18 }, { opacity:1, y:0, duration:0.5, ease:"power3.out" }, t+1.2);
+      // resolved: status flips Working -> done tag appears
+      u.to(o.h, { opacity:0, duration:0.25, ease:"power1.out" }, t+2.0);
+      u.fromTo(o.x, { opacity:0, y:8 }, { opacity:1, y:0, duration:0.45, ease:"power2.out" }, t+2.1);
+      if (!o.last) {
+        u.to(o.s, { opacity:0, duration:0.45, ease:"power2.in" }, t+3.3);
+      }
+    });
+    window.__timelines["05-usecases"] = u;
+  </script>
+</template>

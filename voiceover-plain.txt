@@ -1,0 +1,22 @@
+e2a launch — voiceover (45s). Paste into CapCut / 剪映 AI voice, then align each line to its timecode.
+
+[0–5s · Hook]
+Email has always been for people. e2a opens it to your software — and your agents.
+
+[5–13s · Send]
+Send transactional mail from any application — receipts, alerts, verification — over one simple API.
+
+[13–19s · Identity]
+Or give an AI agent its own real address.
+
+[19–27s · Two-way inbox]
+It sends, receives, and replies in thread — a true two-way inbox.
+
+[27–35s · Keep people in control]
+And you stay in control — hold any sensitive message for human approval before it leaves.
+
+[35–42s · Install]
+Install the plugin, and your agent has an inbox. OAuth, no API key. Open source, Apache 2.0.
+
+[42–45s · Brand]
+e2a. Email, for applications and AI agents.

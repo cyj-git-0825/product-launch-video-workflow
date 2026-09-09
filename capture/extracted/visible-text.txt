@@ -1,0 +1,170 @@
+[a] by Token Canopy
+[button] Resources
+[a] Start building
+[p] Open source · Apache 2.0 · free to start
+[h1] The open-source
+[em] email API
+[h1] for applications and AI agents.
+[p] Send transactional email from any product, give agents real two-way inboxes, and keep people in control. Use e2a as a hosted service or run the Apache-2.0 stack yourself.
+[p] For developers, agent-native teams, and businesses building email into their products and workflows.
+[a] Send from your app
+[a] Give an agent an inbox
+[span] claude plugin install e2a@e2a
+[span] OAuth, no API key
+[span] Apache 2.0
+[div] BUILD AN AGENT FOR
+[a] Support
+[a] Reception
+[a] Scheduling
+[a] E-commerce
+[a] See all use cases →
+[span] 01 · Choose a path
+[h2] Start with the email path you need.
+[p] Use the same open-source API for familiar application email, agent-owned conversations, or approval-sensitive workflows.
+[h3] Send from your application
+[p] Deliver receipts, verification messages, alerts, and product notifications over HTTP or an SDK.
+[h3] Give an agent an inbox
+[p] Add a real two-way address through a plugin, MCP, webhooks, WebSocket, REST, or an SDK.
+[h3] Keep people in control
+[p] Hold sensitive outbound messages for human approval before they leave the system.
+[span] 02 · Agent quick start
+[h2] Install the plugin. Your agent has an inbox.
+[p] The plugin registers the hosted MCP server and an operate-well skill, so your agent can send, receive, reply in-thread, and hold mail for review out of the box. First tool use runs an OAuth flow in your browser — no API key to paste.
+[button] Claude Code
+[button] Codex
+[button] Cursor
+[button] Any MCP client
+[span] ~/my-agent
+[div] # add the marketplace, then install the plugin
+[span] claude
+[div] plugin marketplace add tokencanopy/e2a
+[span] claude
+[div] plugin install e2a@e2a
+[div] # then just ask, in plain language:
+[div] #   "Create an email agent and listen for new mail."
+[div] #   "Reply to Dana's thread and hold it for my approval."
+[span] 03 · Application API
+[h2] Send from any
+[em] application.
+[p] Use e2a for receipts, verification messages, product notifications, and alerts from the software you already run. No agent framework is required.
+[p] Call the HTTP API directly or use the TypeScript and Python SDKs. If the workflow later needs replies, e2a can turn the same sender into a two-way inbox with threading, signed webhooks, WebSocket delivery, and optional human approval.
+[a] Transactional email guide
+[a] API reference
+[button] Python
+[button] TypeScript
+[span] ~/my-agent
+[div] # pip install e2a
+[span] from
+[div] e2a.v1
+[span] import
+[div] AsyncE2AClient
+[span] async with
+[span] AsyncE2AClient
+[div] (api_key=
+[span] "e2a_…"
+[div] client:
+[span] await
+[div] client.messages.
+[span] send
+[span] "receipts@example.com"
+[span] "to"
+[div] : [
+[span] "email"
+[span] "customer@example.net"
+[span] "subject"
+[span] "Your receipt"
+[span] "text"
+[span] "Thanks for your order."
+[span] 03 · Human-in-the-loop
+[h2] Approve
+[em] before
+[h2] your agent hits send.
+[p] Flip one switch and outbound messages pause for your review instead of going straight out. You get a notification — click to see recipients, subject, and body on a secure confirmation page. Approve, edit, or reject.
+[p] Per-agent, opt-in, off by default. Configurable TTL with auto-approve or auto-reject on expiry. Reviewable from the dashboard, SDK, or one-click magic links in your inbox.
+[a] Read the announcement
+[a] Enable on an agent
+[span] hitl.ts · sdk
+[div] // Turn on HITL in the dashboard, or hold outbound for
+[div] // review via the agent's protection config.
+[div] // review held messages with an account-scoped key
+[span] const
+[div] held =
+[span] await
+[div] client.reviews.
+[span] list
+[div] ().
+[span] toArray
+[div] limit:
+[div] msg_abc123  customer@acme.io
+[span] in 47m
+[div] msg_def456  legal@stripe.com
+[span] in 2h 12m
+[div] // approve (sends it) or reject with a reason
+[span] await
+[div] client.reviews.
+[span] approve
+[span] "msg_abc123"
+[div] → approved · delivering now
+[span] 04 · Use cases
+[h2] What you can build.
+[p] If it can receive email and take action, e2a can power it.
+[div] Support
+[div] Support and intake
+[div] Triage inbound requests, answer common questions, and hand off to humans without changing how customers reach you.
+[div] Admin
+[div] Scheduling and admin
+[div] Coordinate meetings, send reminders, and follow up where most people already live — their inbox.
+[div] Reception
+[div] AI receptionist
+[div] Answer common inquiries, route messages, and forward conversations to the right person.
+[div] Commerce
+[div] E-commerce agents
+[div] Answer order questions, handle returns, and coordinate with vendors through persistent email threads.
+[div] Sales
+[div] Sales and follow-through
+[div] Qualify leads, reply to outreach, and keep conversations moving from an agent-owned address.
+[div] Recruiting
+[div] Recruiting agents
+[div] Coordinate candidates, schedule interviews, and keep hiring conversations organized.
+[div] Auth
+[div] OTP and verification
+[div] Receive verification codes, confirmation emails, and magic links — then act on them automatically.
+[div] Voice
+[div] Voice agents
+[div] After a call ends, your voice agent sends a follow-up, receives a reply, and keeps the thread going.
+[div] Procurement
+[div] Procurement
+[div] Coordinate with vendors, chase POs, and manage supplier threads with partners who still run on email.
+[span] 05 · FAQ
+[h2] Questions people ask.
+[h3] Can e2a be used as a general transactional email API?
+[p] Yes. Any application can use e2a's HTTP API and TypeScript or Python SDKs to send transactional email. Agent inboxes, inbound email, threading, and human approval are additional capabilities—not requirements.
+[h3] Can an AI agent have its own email address?
+[p] Yes. e2a gives an AI agent its own dedicated, two-way email address on the shared agents.e2a.dev domain or on a domain you verify yourself. The inbox belongs to the agent rather than to a human whose mailbox the agent reads, so recipients can tell agent mail apart from yours and revoking the agent never touches anyone's personal mail. The agent reaches that inbox over MCP tools, a signed webhook, a WebSocket stream, REST polling, or the TypeScript and Python SDKs.
+[h3] How do you verify an email actually came from an AI agent?
+[p] e2a evaluates SPF, every DKIM signature, and DMARC on every inbound message, then hands the agent a normalized verdict — including whether DMARC passed with alignment — as structured evidence instead of raw headers the agent has to parse and trust. That proves the message really came from the domain it claims, so mail from an agent on a verified e2a domain is distinguishable from a spoof of it. e2a treats an aligned DMARC pass as authorization to use the From domain, not as proof of a particular person or mailbox.
+[h3] What is the difference between e2a and a transactional email API like Resend?
+[p] A transactional email API sends mail on behalf of an application; e2a gives an AI agent a two-way mailbox of its own. e2a accepts inbound mail over SMTP, verifies SPF/DKIM/DMARC, and delivers it to the agent over webhook, WebSocket, REST, or MCP, then sends the agent's replies back out in-thread through its HTTP API — with an optional approval hold and optional prompt-injection screening on the way through. The two are not mutually exclusive: e2a can use an upstream provider such as Amazon SES or Resend as the relay that carries its outbound mail to human recipients.
+[h3] Is there an open-source email API for AI agents?
+[p] Yes. e2a is Apache-2.0, and the whole stack is public at github.com/tokencanopy/e2a: the Go server and SMTP relay, the TypeScript and Python SDKs, the CLI, the MCP server, and the dashboard. You can self-host it against your own Postgres and outbound SMTP relay. The hosted service at e2a.dev runs the same open-source server image and manages the operating infrastructure for you.
+[h3] How do you stop an AI agent from sending an email without approval?
+[p] e2a has an opt-in human-in-the-loop approval gate you turn on per agent. With it on, an outbound send is accepted but not dispatched — the API returns 202 with status pending_review — and the message leaves only once a person approves it from the dashboard, the MCP tools, the API, or a magic link mailed to the reviewer's own inbox. A recipient allowlist can narrow the gate so only unfamiliar recipients are held, and a hold that expires without a decision can be configured to reject rather than send.
+[h3] How do you protect an agent inbox from prompt injection over email?
+[p] e2a can screen inbound mail before the agent ever sees it. Its opt-in content screening flags prompt-injection payloads — hidden HTML, Unicode-tag smuggling, encoded instructions — with dependency-free heuristics, and, with the optional LLM detector enabled, phishing as well; each message is then routed to allow, review, or block. Messages routed to review land in the same queue as held outbound mail, so a person decides before the agent acts on them. e2a also attaches SPF, DKIM, and DMARC results to every inbound message, so an agent can weigh how far to trust a sender instead of trusting the From header.
+[h3] How does an AI agent receive email if it runs locally, with no public URL?
+[p] e2a delivers inbound mail over a WebSocket stream and plain REST polling as well as webhooks, so an agent running on a laptop, in a notebook, or behind a firewall never needs a public HTTPS endpoint. The e2a CLI's listen command bridges that stream to a local HTTP handler, and the hosted MCP server exposes the same inbox as tools for agents that run no server at all. When you do host a webhook, e2a signs every delivery with a per-webhook HMAC secret that the SDKs verify in one call.
+[h2] Your agent's inbox is
+[em] one sign-in
+[h2] away.
+[p] Free to start. No credit card. Up and running in under two minutes.
+[a] Get started free
+[a] Read the docs
+[p] Have feedback?
+[a] We'd love to hear from you.
+[a] by Token Canopy
+[a] Transactional Email
+[a] API Docs
+[a] Python SDK
+[a] TypeScript SDK
+[a] Feedback
+[span] Apache 2.0

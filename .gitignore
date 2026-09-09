@@ -1,0 +1,6 @@
+# QC / temp artifacts
+snapshots/
+audio_request.json
+.hyperframes/
+node_modules/
+*.log

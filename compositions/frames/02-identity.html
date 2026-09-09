@@ -1,0 +1,92 @@
+<template>
+  <style>
+    @font-face { font-family:"Fraunces"; src:url("assets/fonts/fraunces_latin_full_normal-s.p.40m4cggjzbqwa.woff2") format("woff2"); font-weight:100 900; font-style:normal; font-display:block; }
+    @font-face { font-family:"Inter"; src:url("assets/fonts/inter_latin_wght_normal-s.p.0gsaq8ukbf34m.woff2") format("woff2"); font-weight:100 900; font-style:normal; font-display:block; }
+    @font-face { font-family:"JetBrains Mono"; src:url("assets/fonts/jetbrains_mono_latin_wght_normal-s.p.2rmhnsrc80fag.woff2") format("woff2"); font-weight:100 900; font-style:normal; font-display:block; }
+    #root { container-type:size; position:relative; width:1920px; height:1080px; overflow:hidden; font-family:"Inter",sans-serif; color:#1a1714; }
+    #root .id-ground { position:absolute; inset:0; background:#faf7f2; }
+
+    #root .id-left { position:absolute; left:8cqw; top:28cqh; width:31cqw; }
+    #root .id-kick { font-family:"JetBrains Mono",monospace; font-weight:500; font-size:1.2cqw; letter-spacing:0.18em; text-transform:uppercase; color:#b0554a; }
+    #root .id-h { font-family:"Fraunces",Georgia,serif; font-weight:400; font-size:4.0cqw; line-height:1.05; letter-spacing:-0.02em; margin-top:1.6cqh; }
+    #root .id-sub { font-size:1.65cqw; line-height:1.5; color:#5f6a5a; margin-top:1.8cqh; max-width:27cqw; }
+
+    #root .id-panel { position:absolute; left:44cqw; top:22cqh; width:48cqw; background:#fffdf9; border:1px solid #e6e0d3; border-radius:16px; box-shadow:0 2px 4px rgba(26,23,20,0.04), 0 24px 60px rgba(26,23,20,0.10); overflow:hidden; }
+    #root .id-ph { padding:1.5cqh 1.8cqw; font-family:"JetBrains Mono",monospace; font-size:1.15cqw; color:#93867a; border-bottom:1px solid #efe9dd; text-transform:uppercase; letter-spacing:0.08em; }
+    #root .id-row { display:flex; align-items:center; gap:1.1cqw; padding:2.0cqh 1.8cqw; border-bottom:1px solid #f1ece2; opacity:0; }
+    #root .id-av { width:3.2cqw; height:3.2cqw; border-radius:999px; flex:none; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:600; font-size:1.2cqw; }
+    #root .id-nm { font-weight:600; font-size:1.7cqw; }
+    #root .id-ad { font-family:"JetBrains Mono",monospace; font-size:1.3cqw; color:#5f5a50; margin-top:0.2cqh; }
+    #root .id-ok { margin-left:auto; font-family:"JetBrains Mono",monospace; font-size:1.0cqw; text-transform:uppercase; letter-spacing:0.06em; color:#2e8659; }
+    /* agent row (no identity) */
+    #root .id-agent { background:#fbf6f4; }
+    #root .id-empty { display:flex; align-items:center; gap:0.5cqw; font-family:"JetBrains Mono",monospace; font-size:1.3cqw; color:#b7b1a4; margin-top:0.2cqh; }
+    #root .id-caret { display:inline-block; width:2px; height:1.5cqw; background:#b0554a; }
+    #root .id-warn { margin-left:auto; font-family:"JetBrains Mono",monospace; font-size:1.0cqw; text-transform:uppercase; letter-spacing:0.06em; color:#b0554a; opacity:0; }
+    /* status ticker under agent */
+    #root .id-stat { padding:1.5cqh 1.8cqw; display:flex; align-items:center; gap:0.8cqw; min-height:4.4cqh; }
+    #root .id-stx { position:absolute; font-family:"JetBrains Mono",monospace; font-size:1.2cqw; color:#6e665b; opacity:0; }
+    #root .id-stwrap { position:relative; height:1.6cqw; flex:1; }
+    #root .id-fail { color:#b0554a; font-weight:500; }
+  </style>
+
+  <div id="root" data-composition-id="02-identity" data-start="0" data-duration="7.4" data-width="1920" data-height="1080">
+    <div class="clip id-ground" data-start="0" data-duration="7.4" data-track-index="0"></div>
+
+    <div class="clip id-left" data-start="0" data-duration="7.4" data-track-index="1">
+      <div class="id-kick" id="id-kick">&#10033;&nbsp;&nbsp;The gap</div>
+      <div class="id-h" id="id-h">It can think. It just can't reach anyone.</div>
+      <div class="id-sub" id="id-sub">Your newest teammate is ready to work. It's the only one without an address.</div>
+    </div>
+
+    <div class="clip id-panel" id="id-panel" data-start="0" data-duration="7.4" data-track-index="2">
+      <div class="id-ph">Team</div>
+      <div class="id-row" id="id-r1">
+        <div class="id-av" style="background:#4a76c9;">SM</div>
+        <div><div class="id-nm">Sarah Mitchell</div><div class="id-ad">sarah@company.com</div></div>
+        <div class="id-ok">Active</div>
+      </div>
+      <div class="id-row" id="id-r2">
+        <div class="id-av" style="background:#c08a3e;">MC</div>
+        <div><div class="id-nm">Mike Chen</div><div class="id-ad">mike@company.com</div></div>
+        <div class="id-ok">Active</div>
+      </div>
+      <div class="id-row id-agent" id="id-r3">
+        <div class="id-av" style="background:#2b4033;">AI</div>
+        <div><div class="id-nm">AI Agent</div><div class="id-empty">no address<span class="id-caret"></span></div></div>
+        <div class="id-warn" id="id-warn">Can't send</div>
+      </div>
+      <div class="id-stat">
+        <div class="id-stwrap">
+          <div class="id-stx" id="id-st1">Thinking...</div>
+          <div class="id-stx" id="id-st2">Reasoning...</div>
+          <div class="id-stx" id="id-st3">Draft ready.</div>
+          <div class="id-stx id-fail" id="id-st4">No address to send from.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const id = gsap.timeline({ paused:true });
+    id.fromTo("#id-kick", { opacity:0, y:12 }, { opacity:1, y:0, duration:0.4, ease:"power3.out" }, 0.1);
+    id.fromTo("#id-h", { opacity:0, y:20 }, { opacity:1, y:0, duration:0.55, ease:"power4.out" }, 0.3);
+    id.fromTo("#id-sub", { opacity:0, y:14 }, { opacity:1, y:0, duration:0.5, ease:"power3.out" }, 0.75);
+    id.fromTo("#id-panel", { opacity:0, y:26, scale:0.98 }, { opacity:1, y:0, scale:1, duration:0.55, ease:"power4.out" }, 0.6);
+    id.fromTo("#id-r1", { opacity:0, x:20 }, { opacity:1, x:0, duration:0.4, ease:"power3.out" }, 1.3);
+    id.fromTo("#id-r2", { opacity:0, x:20 }, { opacity:1, x:0, duration:0.4, ease:"power3.out" }, 1.7);
+    id.fromTo("#id-r3", { opacity:0, x:20 }, { opacity:1, x:0, duration:0.45, ease:"back.out(1.5)" }, 2.3);
+    // agent thinks, then the gap lands
+    id.fromTo("#id-st1", { opacity:0 }, { opacity:1, duration:0.3 }, 3.1);
+    id.to("#id-st1", { opacity:0, duration:0.25 }, 3.7);
+    id.fromTo("#id-st2", { opacity:0 }, { opacity:1, duration:0.3 }, 3.75);
+    id.to("#id-st2", { opacity:0, duration:0.25 }, 4.35);
+    id.fromTo("#id-st3", { opacity:0 }, { opacity:1, duration:0.3 }, 4.4);
+    id.to("#id-st3", { opacity:0, duration:0.25 }, 5.0);
+    id.fromTo("#id-st4", { opacity:0, x:6 }, { opacity:1, x:0, duration:0.4, ease:"power2.out" }, 5.05);
+    id.fromTo("#id-warn", { opacity:0 }, { opacity:1, duration:0.35 }, 5.15);
+    window.__timelines["02-identity"] = id;
+  </script>
+</template>

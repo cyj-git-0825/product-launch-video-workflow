@@ -1,0 +1,116 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Fraunces";
+      src: url("assets/fonts/fraunces_latin_full_normal-s.p.40m4cggjzbqwa.woff2") format("woff2");
+      font-weight: 100 900; font-style: normal; font-display: block;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/inter_latin_wght_normal-s.p.0gsaq8ukbf34m.woff2") format("woff2");
+      font-weight: 100 900; font-style: normal; font-display: block;
+    }
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("assets/fonts/jetbrains_mono_latin_wght_normal-s.p.2rmhnsrc80fag.woff2") format("woff2");
+      font-weight: 100 900; font-style: normal; font-display: block;
+    }
+
+    #root {
+      position: relative;
+      width: 1920px; height: 1080px;
+      container-type: size;
+      overflow: hidden;
+      background: #2b4033;
+    }
+    #root .br7-ground {
+      position: absolute; inset: 0;
+      background: radial-gradient(120% 120% at 50% 42%, #33493b 0%, #2b4033 52%, #223529 100%);
+    }
+    #root .br7-stack {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 2.4cqh;
+      padding-bottom: 6cqh; /* nudge above the 83% keep-out band */
+    }
+    #root .br7-wordmark {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 400;
+      font-size: 13cqw;
+      line-height: 0.98;
+      letter-spacing: -0.028em;
+      color: #faf7f2;
+      opacity: 0;
+      transform-origin: 50% 60%;
+    }
+    #root .br7-tagline {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 400;
+      font-size: 3.1cqw;
+      line-height: 1.1;
+      letter-spacing: -0.014em;
+      color: #f2ece2;
+      opacity: 0;
+      text-align: center;
+    }
+    #root .br7-url {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+      font-size: 1.55cqw;
+      letter-spacing: 0.06em;
+      color: rgba(242,236,226,0.70);
+      opacity: 0;
+      margin-top: 0.4cqh;
+    }
+    #root .br7-rule {
+      width: 0; height: 2px;
+      background: rgba(242,236,226,0.35);
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="07-brand" data-start="0" data-duration="4" data-width="1920" data-height="1080">
+    <div class="clip br7-ground" data-start="0" data-duration="4" data-track-index="0"></div>
+
+    <div class="clip br7-stack" data-start="0" data-duration="4" data-track-index="1">
+      <div class="br7-wordmark" id="br7-wordmark">e2a</div>
+      <div class="br7-rule" id="br7-rule"></div>
+      <div class="br7-tagline" id="br7-tagline">Give your agent an&nbsp;address.</div>
+      <div class="br7-url" id="br7-url">e2a.dev</div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      // Scene 1 (0.0–1.0s): wordmark springs to center
+      tl.fromTo("#br7-wordmark",
+        { opacity: 0, scale: 0.9, y: 14 },
+        { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: "back.out(2)" }, 0.1);
+
+      // hairline draws out beneath the wordmark
+      tl.fromTo("#br7-rule",
+        { opacity: 0, width: 0 },
+        { opacity: 1, width: "14cqw", duration: 0.5, ease: "power2.out" }, 0.7);
+
+      // Scene 2 (1.0–2.0s): tagline rises in
+      tl.fromTo("#br7-tagline",
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 1.0);
+
+      // Scene 3 (2.0–2.6s): url settles
+      tl.fromTo("#br7-url",
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 2.0);
+
+      // Scene 4 (2.6–3.0s): gentle settle (final frame — soft breath, no hard exit)
+      tl.to("#br7-wordmark", { scale: 1.008, duration: 0.4, ease: "sine.inOut" }, 2.6);
+
+      window.__timelines["07-brand"] = tl;
+    })();
+  </script>
+</template>

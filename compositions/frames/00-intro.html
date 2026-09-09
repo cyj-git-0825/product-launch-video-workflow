@@ -1,0 +1,32 @@
+<template>
+  <style>
+    @font-face { font-family:"Fraunces"; src:url("assets/fonts/fraunces_latin_full_normal-s.p.40m4cggjzbqwa.woff2") format("woff2"); font-weight:100 900; font-style:normal; font-display:block; }
+    @font-face { font-family:"Inter"; src:url("assets/fonts/inter_latin_wght_normal-s.p.0gsaq8ukbf34m.woff2") format("woff2"); font-weight:100 900; font-style:normal; font-display:block; }
+    @font-face { font-family:"JetBrains Mono"; src:url("assets/fonts/jetbrains_mono_latin_wght_normal-s.p.2rmhnsrc80fag.woff2") format("woff2"); font-weight:100 900; font-style:normal; font-display:block; }
+    #root { container-type:size; position:relative; width:1920px; height:1080px; overflow:hidden; font-family:"Inter",sans-serif; color:#1a1714; }
+    #root .in-ground { position:absolute; inset:0; background:#faf7f2; }
+    #root .in-stage { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2.6cqh; padding-bottom:6cqh; }
+    #root .in-av { width:7.5cqw; height:7.5cqw; border-radius:999px; background:#2b4033; color:#bcc9a1; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:2.8cqw; box-shadow:0 2px 6px rgba(26,23,20,0.10), 0 20px 50px rgba(26,23,20,0.14); opacity:0; }
+    #root .in-h { font-family:"Fraunces",Georgia,serif; font-weight:400; font-size:5.2cqw; line-height:1.02; letter-spacing:-0.02em; text-align:center; opacity:0; }
+    #root .in-sub { font-family:"JetBrains Mono",monospace; font-size:1.3cqw; letter-spacing:0.16em; text-transform:uppercase; color:#3c6e4f; opacity:0; }
+  </style>
+
+  <div id="root" data-composition-id="00-intro" data-start="0" data-duration="4.4" data-width="1920" data-height="1080">
+    <div class="clip in-ground" data-start="0" data-duration="4.4" data-track-index="0"></div>
+    <div class="clip in-stage" data-start="0" data-duration="4.4" data-track-index="1">
+      <div class="in-av" id="in-av">AI</div>
+      <div class="in-h" id="in-h">Meet your new agent.</div>
+      <div class="in-sub" id="in-sub">it's ready to work</div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const it = gsap.timeline({ paused:true });
+    it.fromTo("#in-av", { opacity:0, scale:0.85, y:10 }, { opacity:1, scale:1, y:0, duration:0.8, ease:"power3.out" }, 0.3);
+    it.fromTo("#in-h", { opacity:0, y:18 }, { opacity:1, y:0, duration:0.9, ease:"power3.out" }, 0.9);
+    it.fromTo("#in-sub", { opacity:0 }, { opacity:1, duration:0.7, ease:"power2.out" }, 1.7);
+    window.__timelines["00-intro"] = it;
+  </script>
+</template>

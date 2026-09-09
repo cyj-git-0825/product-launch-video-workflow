@@ -1,0 +1,42 @@
+{
+  "schema": "hyperframes.capture.icons.v1",
+  "headline": {
+    "file": "assets/favicon.png",
+    "source": "assets/icon-apple-touch-icon-unsized.png",
+    "rank": 0,
+    "shape": "badge",
+    "reason": "no bare-mark candidate among 3 icon(s); used the best-ranked badge"
+  },
+  "icons": [
+    {
+      "file": "assets/icon-apple-touch-icon-unsized.png",
+      "url": "https://e2a.dev/apple-touch-icon.png",
+      "rel": "apple-touch-icon",
+      "sizes": null,
+      "type": null,
+      "rank": 0,
+      "shape": "badge",
+      "shapeReason": "4 of 4 edge midpoints are opaque, so the drawing carries a backdrop"
+    },
+    {
+      "file": "assets/icon-icon-64x64.ico",
+      "url": "https://e2a.dev/favicon.ico?favicon.234kzrb6gsmju.ico",
+      "rel": "icon",
+      "sizes": "64x64",
+      "type": "image/x-icon",
+      "rank": 1,
+      "shape": "unknown",
+      "shapeReason": "image format could not be decoded for inspection"
+    },
+    {
+      "file": "assets/icon-icon-any.ico",
+      "url": "https://e2a.dev/favicon.ico",
+      "rel": "icon",
+      "sizes": "any",
+      "type": null,
+      "rank": 2,
+      "shape": "unknown",
+      "shapeReason": "image format could not be decoded for inspection"
+    }
+  ]
+}

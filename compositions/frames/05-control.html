@@ -1,0 +1,199 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Fraunces";
+      src: url("assets/fonts/fraunces_latin_full_normal-s.p.40m4cggjzbqwa.woff2") format("woff2");
+      font-weight: 100 900; font-style: normal; font-display: block;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/inter_latin_wght_normal-s.p.0gsaq8ukbf34m.woff2") format("woff2");
+      font-weight: 100 900; font-style: normal; font-display: block;
+    }
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("assets/fonts/jetbrains_mono_latin_wght_normal-s.p.2rmhnsrc80fag.woff2") format("woff2");
+      font-weight: 100 900; font-style: normal; font-display: block;
+    }
+
+    #root {
+      position: absolute; inset: 0; width: 1920px; height: 1080px;
+      container-type: size; overflow: hidden;
+      font-family: "Inter", sans-serif; color: #1a1714;
+    }
+    #root .ct5-ground { position: absolute; inset: 0; background: #faf7f2; }
+
+    #root .ct5-kicker {
+      position: absolute; top: 18cqh; left: 12cqw;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.45cqw; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #6e665b; opacity: 0;
+    }
+    #root .ct5-spike { color: #1a1714; }
+
+    /* outbound message card */
+    #root .ct5-card {
+      position: absolute; top: 27cqh; left: 30cqw; width: 40cqw;
+      background: #ffffff; border: 1px solid #e5ded3; border-radius: 14px;
+      box-shadow: 0 1px 3px rgba(26,23,20,0.08), 0 6px 20px rgba(26,23,20,0.05);
+      padding: 2.2cqw 2.4cqw; opacity: 0;
+    }
+    #root .ct5-card-top {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.5cqw;
+    }
+    #root .ct5-tag {
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.0cqw; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #9a9082;
+    }
+    #root .ct5-held {
+      display: inline-flex; align-items: center;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.0cqw; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #2b4033; background: #dfe6cf; border: 1px solid #c3d0a6;
+      padding: 0.5cqw 0.9cqw; border-radius: 9999px; opacity: 0;
+    }
+    #root .ct5-from {
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.5cqw; color: #2b4033; margin-bottom: 0.9cqw;
+    }
+    #root .ct5-subject {
+      font-family: "Inter", sans-serif; font-weight: 500;
+      font-size: 2.2cqw; line-height: 1.2; color: #1a1714; margin-bottom: 0.7cqw;
+    }
+    #root .ct5-preview {
+      font-family: "Inter", sans-serif; font-weight: 400;
+      font-size: 1.5cqw; line-height: 1.45; color: #6e665b;
+    }
+
+    /* approval control */
+    #root .ct5-bar {
+      position: absolute; top: 60cqh; left: 30cqw; width: 40cqw;
+      display: flex; align-items: center; gap: 1.4cqw; opacity: 0;
+    }
+    #root .ct5-approve {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      flex: 1 1 auto; height: 6.4cqh; border-radius: 12px;
+      background: #bcc9a1; color: #233a24;
+      font-family: "Inter", sans-serif; font-weight: 600; font-size: 1.8cqw;
+      box-shadow: 0 2px 8px rgba(43,64,51,0.22);
+    }
+    #root .ct5-reject {
+      display: flex; align-items: center; justify-content: center;
+      width: 13cqw; height: 6.4cqh; border-radius: 12px;
+      background: #ffffff; border: 1px solid #d5ccbc; color: #6e665b;
+      font-family: "Inter", sans-serif; font-weight: 500; font-size: 1.6cqw;
+    }
+    #root .ct5-tap {
+      position: absolute; left: 42%; top: 63cqh;
+      width: 4.4cqw; height: 4.4cqw; border-radius: 9999px;
+      background: rgba(26,23,20,0.14); opacity: 0;
+    }
+
+    /* released / sent */
+    #root .ct5-sent {
+      position: absolute; top: 74cqh; left: 30cqw; width: 40cqw;
+      display: flex; align-items: center; justify-content: center; gap: 0.8cqw;
+      font-family: "JetBrains Mono", monospace; font-weight: 500;
+      font-size: 1.2cqw; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #4f6146; opacity: 0;
+    }
+    #root .ct5-sent-dot {
+      width: 0.9cqw; height: 0.9cqw; border-radius: 9999px; background: #5c6f51;
+    }
+
+    /* oversized macOS cursor */
+    #root .ct5-cursor-wrap {
+      position: absolute; left: 41.5cqw; top: 58%;
+      width: 7cqw; opacity: 0; pointer-events: none; z-index: 50;
+    }
+    #root .ct5-cursor {
+      display: block; width: 100%; height: auto;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+      transform-origin: 21% 14%;
+    }
+  </style>
+
+  <div id="root" data-composition-id="05-control" data-start="0" data-duration="7.8" data-width="1920" data-height="1080">
+    <div class="clip ct5-ground" data-start="0" data-duration="8" data-track-index="0"></div>
+
+    <div class="clip ct5-stage" data-start="0" data-duration="8" data-track-index="1">
+      <div class="ct5-kicker" id="ct5-kicker">
+        <span class="ct5-spike">&#10033;</span>&nbsp;&nbsp;Keep people in control
+      </div>
+
+      <div class="ct5-card" id="ct5-card">
+        <div class="ct5-card-top">
+          <div class="ct5-tag">Outbound</div>
+          <div class="ct5-held" id="ct5-held">Held for approval</div>
+        </div>
+        <div class="ct5-from">billing@agents.e2a.dev</div>
+        <div class="ct5-subject">Payment reminder &middot; 3 recipients</div>
+        <div class="ct5-preview">A sensitive send waits for a human before it leaves the system.</div>
+      </div>
+
+      <div class="ct5-bar" id="ct5-bar">
+        <div class="ct5-approve" id="ct5-approve">Approve</div>
+        <div class="ct5-reject">Reject</div>
+      </div>
+
+      <div class="ct5-tap" id="ct5-tap"></div>
+
+      <div class="ct5-sent" id="ct5-sent">
+        <span class="ct5-sent-dot"></span>Sent
+      </div>
+
+      <div class="clip ct5-cursor-wrap" id="ct5-cursor-wrap" data-start="0" data-duration="8" data-track-index="5">
+        <svg class="ct5-cursor" id="ct5-cursor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 2.5 L5 20.5 L9.6 16.4 L12.4 22.6 L15.1 21.3 L12.3 15.2 L18.6 15.2 Z" fill="#ffffff" stroke="#1c1c1c" stroke-width="1.3" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    // Scene 1 (0.0–1.4s): kicker pops in
+    tl.fromTo("#ct5-kicker", { opacity: 0, y: -14 },
+      { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.6)" }, 0.15);
+
+    // Scene 2 (1.4–3.0s): outbound card snaps in, then the amber-soft "Held" stamp
+    tl.fromTo("#ct5-card", { opacity: 0, y: 28 },
+      { opacity: 1, y: 0, duration: 0.55, ease: "back.out(1.5)" }, 1.4);
+    tl.fromTo("#ct5-held", { opacity: 0, y: -8 },
+      { opacity: 1, y: 0, duration: 0.4, ease: "back.out(2)" }, 2.3);
+
+    // Scene 3 (3.0–4.6s): approve/reject control pops
+    tl.fromTo("#ct5-bar", { opacity: 0, y: 22 },
+      { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" }, 3.2);
+
+    // Scene 4 (3.7–5.4s): the oversized cursor glides up to Approve and taps it
+    tl.fromTo("#ct5-cursor-wrap", { y: 700, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.85, ease: "power3.out" }, 3.7);
+    // the tap: asymmetric compress/expand on the cursor tip
+    tl.to("#ct5-cursor", { scale: 0.84, duration: 0.1, ease: "power2.in" }, 4.82);
+    tl.to("#ct5-cursor", { scale: 1, duration: 0.22, ease: "power2.out" }, 4.92);
+    // ripple + Approve reacts in parallel, ON the tap
+    tl.fromTo("#ct5-tap", { opacity: 0, scale: 0.4 },
+      { opacity: 0.9, scale: 1, duration: 0.28, ease: "power2.out" }, 4.85);
+    tl.to("#ct5-tap", { opacity: 0, duration: 0.35, ease: "power1.out" }, 5.15);
+    tl.to("#ct5-approve", { scale: 0.94, duration: 0.09, ease: "power2.out" }, 4.9);
+    tl.to("#ct5-approve", { scale: 1, duration: 0.18, ease: "power2.out" }, 4.99);
+    // cursor drifts off after its job (mid-frame, before the Sent reveal)
+    tl.to("#ct5-cursor-wrap", { y: 760, opacity: 0, duration: 0.6, ease: "power2.in" }, 5.5);
+
+    // Scene 5 (6.0–7.2s): held clears, moss "Sent" snaps in
+    tl.to("#ct5-held", { opacity: 0, y: -6, duration: 0.3, ease: "power1.out" }, 6.0);
+    tl.fromTo("#ct5-sent", { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.6)" }, 6.25);
+
+    // Scene 6 (7.2–8.0s): settle / hold (no exit)
+
+    window.__timelines["05-control"] = tl;
+  </script>
+</template>
